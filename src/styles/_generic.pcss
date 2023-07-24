@@ -1,0 +1,149 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: var(--color-txt);
+  font-family: var(--font-family-sans-serif);
+  line-height: var(--line-height);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  font-size: calc(var(--font-size-root) - 2px);
+
+  @media (--from-medium) {
+    font-size: calc(var(--font-size-root) - 1px);
+  }
+
+  @media (--from-large) {
+    font-size: var(--font-size-root);
+  }
+
+  @media (--from-huge) {
+    font-size: calc(var(--font-size-root) + 1px);
+  }
+
+  @media (--from-gigantic) {
+    font-size: calc(var(--font-size-root) + 2px);
+  }
+
+  @media (--from-colossal) {
+    font-size: calc(var(--font-size-root) + 3px);
+  }
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--color-background);
+}
+
+template,
+[hidden] {
+  display: none;
+}
+
+*,
+:before,
+:after {
+  box-sizing: inherit;
+}
+
+address {
+  font-style: inherit;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: underline;
+  color: var(--color-primary);
+
+  svg {
+    pointer-events: none;
+  }
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p,
+figure {
+  /* margin: 0; */
+  padding: 0;
+}
+
+a,
+area,
+button,
+input,
+label,
+select,
+textarea,
+[tabindex] {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+[hreflang] > abbr[title] {
+  text-decoration: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+hr {
+  display: block;
+  margin: 1em 0;
+  padding: 0;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+}
+
+::selection {
+  background-color: var(--color-selection-background);
+  color: var(--color-selection-text);
+  text-shadow: none;
+}
+
+button {
+  display: inline-block;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: none transparent;
+  color: inherit;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  user-select: none;
+}

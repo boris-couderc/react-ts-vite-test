@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: var(--wrapper-padding-s);
+  max-width: calc(var(--container-width) + var(--wrapper-padding-s) * 2);
+
+  @media (--from-tiny) {
+    padding-left: var(--wrapper-padding-m);
+    padding-right: var(--wrapper-padding-m);
+
+    &:global(:not(.-fixed-vertical-padding)) {
+      padding-top: var(--wrapper-padding-m);
+      padding-bottom: var(--wrapper-padding-m);
+    }
+
+    max-width: calc(var(--container-width) + var(--wrapper-padding-m) * 2);
+
+    &:global(.-wide) {
+      max-width: 100%;
+    }
+  }
+}

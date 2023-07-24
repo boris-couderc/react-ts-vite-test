@@ -1,0 +1,11 @@
+{
+  "map": false,
+  "plugins": {
+    "postcss-apply": {},
+    "@csstools/postcss-global-data": {
+      "files": ["./src/styles/_breakpoints.pcss"]
+    },
+    "postcss-nested": {},
+    "postcss-preset-env": {}
+  }
+}
