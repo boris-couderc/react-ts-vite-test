@@ -10,9 +10,9 @@ const Page = ({ children }: PageProps) => {
   return (
     <div className={styles.page}>
       <Header />
-      <Nav />
+      {/* <Nav /> */}
       <main className={styles.main}>
-        <Wrapper /* wide */>{children}</Wrapper>
+        <Wrapper>{children}</Wrapper>
       </main>
       <Footer />
     </div>

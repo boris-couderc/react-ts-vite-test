@@ -6,8 +6,7 @@ const Page = () => {
   return (
     <>
       <div className={styles.page}>
-        Page content
-        <br />
+        <p>Page content</p>
         <Link to='/'>Home</Link>
       </div>
     </>
