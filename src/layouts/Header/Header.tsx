@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { Wrapper } from '~/layouts'
 
-import { ReactComponent as Logo } from '~/assets/react.svg'
+import logo from '~/assets/logo.png'
 
 import styles from './Header.module.pcss'
 
@@ -12,7 +12,7 @@ const Header = () => {
       <Wrapper fixedVerticalPadding>
         <div className={styles.content}>
           <Link to='/' className={styles.logo}>
-            <Logo />
+            <img src={logo} alt='' />
           </Link>
         </div>
       </Wrapper>

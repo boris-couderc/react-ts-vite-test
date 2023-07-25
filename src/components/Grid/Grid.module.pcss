@@ -1,0 +1,18 @@
+.grid {
+  display: grid;
+  gap: var(--padding-xs);
+  grid-template-columns: repeat(1, minmax(230px, 400px));
+  justify-content: center;
+
+  @media (--from-small) {
+    grid-template-columns: repeat(2, minmax(230px, 400px));
+  }
+
+  @media (--from-medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (--from-large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

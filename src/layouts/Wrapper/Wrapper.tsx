@@ -5,17 +5,17 @@ type WrapperProps = {
   children: React.ReactNode
   wide?: boolean
   fixedVerticalPadding?: boolean
-  className?: string
+  classProps?: string
 }
 
-const Wrapper = ({ children, wide, fixedVerticalPadding, className }: WrapperProps) => {
+const Wrapper = ({ children, wide, fixedVerticalPadding, classProps }: WrapperProps) => {
   return (
     <div
       className={classNames(
         styles.wrapper,
         { '-wide': wide },
         { '-fixed-vertical-padding': fixedVerticalPadding },
-        className,
+        classProps,
       )}
     >
       {children}

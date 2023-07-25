@@ -1,31 +1,42 @@
-import { Link } from 'react-router-dom'
-
 import styles from './Home.module.pcss'
+
+import { Grid, Box, Button, Heading } from '~/components'
+
+import { IconAdd } from '~/icons'
+
+const CardTest = () => {
+  return (
+    <Box>
+      <Heading as='h2' like='h3' classProps='-margin-none-top'>
+        Title
+      </Heading>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+      </p>
+      <div className='-txt-right'>
+        <Button href='/page' Icon={IconAdd} size='s' classProps='-margin-m-top'>
+          Add to cart
+        </Button>
+      </div>
+    </Box>
+  )
+}
 
 const Home = () => {
   return (
     <>
       <div className={styles.home}>
-        <h1>Lorem ipsum</h1>
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </p>
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <h3>Lorem ipsum dolor sit amet consectetur adipiscing elit</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </p>
-        <br />
-        <Link to='/page'>Page</Link>
+        <Heading>List</Heading>
+        <Grid>
+          <CardTest />
+          <CardTest />
+          <CardTest />
+          <CardTest />
+          <CardTest />
+          <CardTest />
+          <CardTest />
+        </Grid>
       </div>
     </>
   )

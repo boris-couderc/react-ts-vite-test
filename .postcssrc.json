@@ -6,6 +6,7 @@
       "files": ["./src/styles/_breakpoints.pcss"]
     },
     "postcss-nested": {},
+    "postcss-each": {},
     "postcss-preset-env": {}
   }
 }

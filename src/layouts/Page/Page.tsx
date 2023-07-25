@@ -1,4 +1,5 @@
-import { Header, Nav, Wrapper, Footer } from '~/layouts'
+// import { Header, Nav, Wrapper, Footer } from '~/layouts'
+import { Header, Wrapper, Footer } from '~/layouts'
 
 import styles from './Page.module.pcss'
 

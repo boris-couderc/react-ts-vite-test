@@ -1,0 +1,21 @@
+.-margin {
+  &-none {
+    margin: 0;
+
+    @each $border in top, right, bottom, left {
+      &-$(border) {
+        margin-$(border): 0;
+      }
+    }
+  }
+
+  &-m {
+    margin: 1rem;
+
+    @each $border in top, right, bottom, left {
+      &-$(border) {
+        margin-$(border): 1rem;
+      }
+    }
+  }
+}
