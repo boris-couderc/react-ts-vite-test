@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Grid } from '~/components'
 
 import Card from '../Card/Card'
@@ -5,7 +7,9 @@ import Card from '../Card/Card'
 import { useGetPokemonsQuery } from '../../api'
 
 const List = () => {
-  const { data, isLoading, isSuccess, isError } = useGetPokemonsQuery()
+  const [page, setPage] = useState(3)
+
+  const { data, isLoading, isSuccess, isError } = useGetPokemonsQuery(page)
 
   if (isLoading) return <>Loading ...</>
 
