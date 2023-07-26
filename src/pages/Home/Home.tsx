@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import styles from './Home.module.pcss'
 
 import { Heading } from '~/components'
@@ -10,6 +12,9 @@ const Home = () => {
       <div className={styles.home}>
         <Heading>List</Heading>
         <List />
+        <p>
+          <Link to='/page'>Page</Link>
+        </p>
       </div>
     </>
   )

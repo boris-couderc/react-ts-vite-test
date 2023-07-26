@@ -1,20 +1,22 @@
 .-margin {
   &-none {
     margin: 0;
+  }
 
-    @each $border in top, right, bottom, left {
-      &-$(border) {
-        margin-$(border): 0;
-      }
+  @each $spacing in xs, s, m {
+    &-$(spacing) {
+      margin: var(--spacing-$(spacing));
     }
   }
 
-  &-m {
-    margin: 1rem;
+  @each $border in top, right, bottom, left {
+    &-$(border)-none {
+      margin-$(border): 0;
+    }
 
-    @each $border in top, right, bottom, left {
-      &-$(border) {
-        margin-$(border): 1rem;
+    @each $spacing in xs, s, m {
+      &-$(border)-$(spacing) {
+        margin-$(border): var(--spacing-$(spacing));
       }
     }
   }

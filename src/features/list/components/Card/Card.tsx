@@ -1,21 +1,29 @@
+import classNames from 'classnames'
+
 import { Box, Button, Heading } from '~/components'
 import { IconAdd } from '~/icons'
 
-const Card = () => {
+import { Pokemon } from '../../types'
+
+import styles from './Card.module.pcss'
+
+const Card = ({ item }: { item: Pokemon }) => {
   return (
-    <Box>
-      <Heading as='h2' like='h3' classProps='-margin-none-top'>
-        Title
+    <Box classProps='-txt-center'>
+      <img
+        src={item.images.small}
+        srcSet={`${item.images.small} 1x, ${item.images.large} 2x`}
+        alt={item.name}
+        style={{ maxWidth: '100%' }}
+        className={classNames(styles.img)}
+      />
+      <Heading as='h2' like='h3' classProps='-margin-top-s -margin-bottom-s'>
+        {item.name}
       </Heading>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
-      </p>
-      <div className='-txt-right'>
-        <Button href='/page' Icon={IconAdd} size='s' classProps='-margin-m-top'>
-          Add to cart
-        </Button>
-      </div>
+      <div>{item.supertype}</div>
+      <Button href='/page' Icon={IconAdd} size='s' classProps='-margin-top-m'>
+        Add to cart
+      </Button>
     </Box>
   )
 }
