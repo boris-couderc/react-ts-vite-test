@@ -1,0 +1,42 @@
+.list {
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  margin: var(--spacing-m);
+
+  @media (--from-small) {
+    grid-template-columns: 40% 20% 40%;
+  }
+}
+
+.list-loader {
+  align-self: center;
+  @media (--from-small) {
+    justify-self: center;
+    grid-column-start: 2;
+  }
+}
+
+.list-pagination {
+  justify-self: end;
+
+  @media (--from-small) {
+    grid-column-start: 3;
+  }
+}
+
+.no-result {
+  padding: var(--spacing-l) 0;
+  text-align: center;
+  font-size: 1.25em;
+  color: var(--color-txt-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-s);
+}

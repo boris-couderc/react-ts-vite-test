@@ -1,30 +1,74 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
-import { Grid } from '~/components'
+import { Grid, Pagination, Loader, Heading } from '~/components'
 
 import Card from '../Card/Card'
 
 import { useGetPokemonsQuery } from '../../api'
 
+import styles from './List.module.pcss'
+import { IconEmojiSad, IconTrash } from '~/icons'
+
 const List = () => {
-  const [page, setPage] = useState(3)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [page, setPage] = useState(1)
 
-  const { data, isLoading, isSuccess, isError } = useGetPokemonsQuery(page)
+  const { data, isLoading, isFetching } = useGetPokemonsQuery(page)
 
-  if (isLoading) return <>Loading ...</>
+  useEffect(() => {
+    setPage(Number(searchParams.get('page')))
+  }, [searchParams])
 
-  if (isError) return <>Error</>
+  const handleChangePage = (value: string) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('page', `${page + (value === 'prev' ? -1 : 1)}`)
+    setSearchParams(params)
+  }
 
-  if (isSuccess && data?.data?.length > 0) {
+  if (isLoading)
     return (
-      <Grid>
-        {data.data.map(item => (
-          <Card key={item.id} item={item} />
-        ))}
-      </Grid>
+      <div className={styles.actions}>
+        <Loader classProps={styles['list-loader']} />
+      </div>
+    )
+
+  if (data && data.data?.length > 0) {
+    return (
+      <>
+        <div className={styles.actions}>
+          {(isFetching || isLoading) && <Loader classProps={styles['list-loader']} />}
+          {data.totalCount > data.pageSize && (
+            <Pagination
+              current={page}
+              total={Math.ceil(data.totalCount / data.pageSize)}
+              changePage={handleChangePage}
+              classProps={styles['list-pagination']}
+            />
+          )}
+        </div>
+        <Grid>
+          {data.data.map(item => (
+            <Card key={item.id} item={item} />
+          ))}
+        </Grid>
+        <div className={styles.actions}>
+          <Pagination
+            current={page}
+            total={Math.ceil(data.totalCount / data.pageSize)}
+            changePage={handleChangePage}
+            classProps={styles['list-pagination']}
+          />
+        </div>
+      </>
     )
   } else {
-    return <>No data</>
+    return (
+      <div className={styles['no-result']}>
+        Sorry no results
+        <IconEmojiSad size='l' />
+      </div>
+    )
   }
 }
 

@@ -5,7 +5,7 @@ import styles from './Footer.module.pcss'
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <Wrapper fixedVerticalPadding>footer content</Wrapper>
+      <Wrapper fixedVerticalPadding>© Pokemon Tech 2023 all rights reserved</Wrapper>
     </footer>
   )
 }

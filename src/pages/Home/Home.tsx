@@ -10,11 +10,11 @@ const Home = () => {
   return (
     <>
       <div className={styles.home}>
-        <Heading>List</Heading>
+        <Heading classProps='-txt-center'>Discover all Pokemon</Heading>
         <List />
-        <p>
+        {/* <p>
           <Link to='/page'>Page</Link>
-        </p>
+        </p> */}
       </div>
     </>
   )
