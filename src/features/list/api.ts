@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const { VITE_API_URL } = import.meta.env
 
-import { Pokemon } from './types'
+import { PokemonFromApi, Pokemon } from './types'
 
 type Response<T> = {
   data: T[]
@@ -18,6 +18,27 @@ export const api = createApi({
   endpoints: builder => ({
     getPokemons: builder.query<Response<Pokemon>, number | void>({
       query: page => `/cards?page=${page || 1}&pageSize=20`,
+      transformResponse: (response: Response<PokemonFromApi>): Response<Pokemon> => {
+        return {
+          count: response.count,
+          page: response.page,
+          pageSize: response.pageSize,
+          totalCount: response.totalCount,
+          data: response.data.map((item: PokemonFromApi): Pokemon => {
+            return {
+              id: item.id,
+              name: item.name,
+              supertype: item.supertype,
+              subtypes: item.subtypes,
+              hp: item.hp,
+              types: item.types,
+              rules: item.rules,
+              images: item.images,
+              price: item.cardmarket?.prices?.trendPrice,
+            }
+          }),
+        }
+      },
     }),
   }),
 })

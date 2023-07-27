@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { Grid, Pagination, Loader, Heading } from '~/components'
-
+import { Grid, Pagination, Loader } from '~/components'
 import Card from '../Card/Card'
+import { IconEmojiSad } from '~/icons'
 
 import { useGetPokemonsQuery } from '../../api'
 
 import styles from './List.module.pcss'
-import { IconEmojiSad, IconTrash } from '~/icons'
 
 const List = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -17,7 +16,7 @@ const List = () => {
   const { data, isLoading, isFetching } = useGetPokemonsQuery(page)
 
   useEffect(() => {
-    setPage(Number(searchParams.get('page')))
+    setPage(Number(searchParams.get('page') || 1))
   }, [searchParams])
 
   const handleChangePage = (value: string) => {

@@ -1,0 +1,19 @@
+.search {
+  form {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  button {
+    flex-shrink: 0;
+
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+
+  @media (--from-small) {
+    padding: 0 var(--spacing-m);
+  }
+}

@@ -1,21 +1,15 @@
-import { Link } from 'react-router-dom'
-
-import styles from './Home.module.pcss'
-
+import { List } from '~/features'
 import { Heading } from '~/components'
 
-import { List } from '~/features/list'
+// import styles from './Home.module.pcss'
 
 const Home = () => {
   return (
     <>
-      <div className={styles.home}>
-        <Heading classProps='-txt-center'>Discover all Pokemon</Heading>
-        <List />
-        {/* <p>
-          <Link to='/page'>Page</Link>
-        </p> */}
-      </div>
+      {/* <div className={styles.home}> */}
+      <Heading classProps='-txt-center'>Discover all Pokemon</Heading>
+      <List />
+      {/* </div> */}
     </>
   )
 }

@@ -7,15 +7,17 @@
   justify-content: space-between;
   align-items: center;
   height: 2.5rem;
-  margin: var(--spacing-m);
+  margin: var(--spacing-m) 0;
 
   @media (--from-small) {
+    margin: var(--spacing-m);
     grid-template-columns: 40% 20% 40%;
   }
 }
 
 .list-loader {
   align-self: center;
+
   @media (--from-small) {
     justify-self: center;
     grid-column-start: 2;
@@ -24,6 +26,7 @@
 
 .list-pagination {
   justify-self: end;
+  grid-column-start: 2;
 
   @media (--from-small) {
     grid-column-start: 3;

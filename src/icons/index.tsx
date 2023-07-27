@@ -12,6 +12,7 @@ export const IconLeft = (props: IconProps) => <Icon symbol='icon-chevron-left' {
 export const IconRight = (props: IconProps) => <Icon symbol='icon-chevron-right' {...props} />
 export const IconSpinner = (props: IconProps) => <Icon symbol='icon-spinner' {...props} />
 export const IconCross = (props: IconProps) => <Icon symbol='icon-cross' {...props} />
+export const IconSearch = (props: IconProps) => <Icon symbol='icon-search' {...props} />
 
 export const IconEmojiNeutral = (props: IconProps) => <Icon symbol='icon-emoji-neutral' {...props} />
 export const IconEmojiHappy = (props: IconProps) => <Icon symbol='icon-emoji-happy' {...props} />

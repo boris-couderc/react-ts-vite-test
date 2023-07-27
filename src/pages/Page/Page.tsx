@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { Button } from '~/components'
+import { Button, Input } from '~/components'
 import { IconAdd, IconRemove, IconRocket } from '~/icons'
 
 import styles from './Page.module.pcss'
@@ -56,6 +56,7 @@ const Page = () => {
         <IconRemove color={'neutral'} />
         <IconRocket color={'primary'} />
         <br />
+        <Input type='text' placeholder='Search a Pokemon ...' />
       </div>
     </>
   )
