@@ -25,6 +25,14 @@ const Card = ({ item }: { item: Pokemon }) => {
             {item.hp}
           </div>
         )}
+        {item.rarity && (
+          <div>
+            <Heading as='span' like='h5'>
+              Rarity :
+            </Heading>{' '}
+            {item.rarity}
+          </div>
+        )}
         {item.types && item.types?.length > 0 && (
           <div>
             <Heading as='span' like='h5'>

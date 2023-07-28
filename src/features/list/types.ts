@@ -10,6 +10,7 @@ export type Pokemon = {
     small: string
     large: string
   }
+  rarity?: string
   price?: number
 }
 

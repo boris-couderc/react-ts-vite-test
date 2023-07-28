@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
-import { api } from '~/features/list/api'
+import { apiList } from '~/features/list/api'
+import { searchSlice } from '~/features/search/slice'
 
 export const store = configureStore({
   reducer: {
-    [api.reducerPath]: api.reducer,
+    [apiList.reducerPath]: apiList.reducer,
+    [searchSlice.name]: searchSlice.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware),
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiList.middleware),
 })
 
 setupListeners(store.dispatch)

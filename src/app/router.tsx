@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import App from './App'
 
-import { Error, Home, NotFound, Page } from '~/pages'
+import { Error, Home, Search, NotFound, Page } from '~/pages'
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +13,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/search',
+        element: <Search />,
       },
       {
         path: '/page',

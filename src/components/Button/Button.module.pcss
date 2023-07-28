@@ -58,12 +58,12 @@
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.075) inset;
   }
 
-  &:global(:not(.-disabled):focus::after),
+  /* &:global(:not(.-disabled):focus::after), */
   &:global(:not(.-disabled):hover::after) {
     transform: scale(1.05, 1.075);
   }
 
-  &:global(.-icon:not(.-disabled):focus::after),
+  /* &:global(.-icon:not(.-disabled):focus::after), */
   &:global(.-icon:not(.-disabled):hover::after) {
     transform: scale(1.075);
   }
@@ -74,13 +74,13 @@
     box-shadow: 0 0 0 5px currentColor;
   }
 
-  &:global(:not(.-disabled):focus::before),
+  /* &:global(:not(.-disabled):focus::before), */
   &:global(:not(.-disabled):hover::before) {
     transform: scale(1.0375, 1.05);
     opacity: 0.25;
   }
 
-  &:global(.-icon:not(.-disabled):focus::before),
+  /* &:global(.-icon:not(.-disabled):focus::before), */
   &:global(.-icon:not(.-disabled):hover::before) {
     transform: scale(1.05);
   }

@@ -12,35 +12,49 @@ type Response<T> = {
   totalCount: number
 }
 
-export const api = createApi({
-  reducerPath: 'pokemonApi',
+const pageSize = 20
+
+const replaceSpace = (s: string) => s.replace(/\s/g, '*')
+
+export const apiList = createApi({
+  reducerPath: 'listApi',
   baseQuery: fetchBaseQuery({ baseUrl: VITE_API_URL as string }),
   endpoints: builder => ({
-    getPokemons: builder.query<Response<Pokemon>, number | void>({
-      query: page => `/cards?page=${page || 1}&pageSize=20`,
-      transformResponse: (response: Response<PokemonFromApi>): Response<Pokemon> => {
-        return {
-          count: response.count,
-          page: response.page,
-          pageSize: response.pageSize,
-          totalCount: response.totalCount,
-          data: response.data.map((item: PokemonFromApi): Pokemon => {
-            return {
-              id: item.id,
-              name: item.name,
-              supertype: item.supertype,
-              subtypes: item.subtypes,
-              hp: item.hp,
-              types: item.types,
-              rules: item.rules,
-              images: item.images,
-              price: item.cardmarket?.prices?.trendPrice,
-            }
-          }),
+    getPokemons: builder.query<Response<Pokemon>, { query: string; page: number }>({
+      query: ({ query, page }) => {
+        if (query !== '') {
+          return `/cards?q=name:*${replaceSpace(query)}*&page=${page || 1}&pageSize=${pageSize}`
+        } else {
+          return `/cards?page=${page || 1}&pageSize=${pageSize}`
         }
+      },
+      transformResponse: (response: Response<PokemonFromApi>): Response<Pokemon> => ({
+        count: response.count,
+        page: response.page,
+        pageSize: response.pageSize,
+        totalCount: response.totalCount,
+        data: response.data.map((item: PokemonFromApi): Pokemon => {
+          return {
+            id: item.id,
+            name: item.name,
+            supertype: item.supertype,
+            subtypes: item.subtypes,
+            hp: item.hp,
+            types: item.types,
+            rules: item.rules,
+            images: item.images,
+            rarity: item.rarity,
+            price: item.cardmarket?.prices?.trendPrice,
+          }
+        }),
+      }),
+    }),
+    getRarities: builder.query<Response<Pokemon>, void>({
+      query: () => {
+        return `/rarities`
       },
     }),
   }),
 })
 
-export const { useGetPokemonsQuery } = api
+export const { useGetPokemonsQuery, useGetRaritiesQuery } = apiList
