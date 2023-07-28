@@ -7,7 +7,7 @@ import styles from './Card.module.pcss'
 
 const Card = ({ item }: { item: Pokemon }) => {
   return (
-    <Box classProps={styles.box}>
+    <Box classProps={styles['card-box']}>
       <LazyLoadingImage
         srcUrl={item.images.small}
         srcSet={`${item.images.small} 1x, ${item.images.large} 2x`}

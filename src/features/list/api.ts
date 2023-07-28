@@ -2,14 +2,25 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const { VITE_API_URL } = import.meta.env
 
-import { PokemonFromApi, Pokemon } from './types'
+import { Pokemon, Rarity } from './types'
 
 type Response<T> = {
   data: T[]
+}
+
+type ResponsePokemons<T> = Response<T> & {
   page: number
   pageSize: number
   count: number
   totalCount: number
+}
+
+export type PokemonFromApi = Pokemon & {
+  cardmarket?: {
+    prices?: {
+      trendPrice?: number
+    }
+  }
 }
 
 const pageSize = 20
@@ -20,15 +31,23 @@ export const apiList = createApi({
   reducerPath: 'listApi',
   baseQuery: fetchBaseQuery({ baseUrl: VITE_API_URL as string }),
   endpoints: builder => ({
-    getPokemons: builder.query<Response<Pokemon>, { query: string; page: number }>({
-      query: ({ query, page }) => {
+    getPokemons: builder.query<ResponsePokemons<Pokemon>, { query: string; page: number; filter: string }>({
+      query: ({ query, page, filter }) => {
         if (query !== '') {
-          return `/cards?q=name:*${replaceSpace(query)}*&page=${page || 1}&pageSize=${pageSize}`
+          if (filter) {
+            return `/cards?q=name:*${replaceSpace(query)}* rarity:"${filter}"&page=${page || 1}&pageSize=${pageSize}`
+          } else {
+            return `/cards?q=name:*${replaceSpace(query)}*&page=${page || 1}&pageSize=${pageSize}`
+          }
         } else {
-          return `/cards?page=${page || 1}&pageSize=${pageSize}`
+          if (filter) {
+            return `/cards?q=rarity:"${filter}"&page=${page || 1}&pageSize=${pageSize}`
+          } else {
+            return `/cards?page=${page || 1}&pageSize=${pageSize}`
+          }
         }
       },
-      transformResponse: (response: Response<PokemonFromApi>): Response<Pokemon> => ({
+      transformResponse: (response: ResponsePokemons<PokemonFromApi>): ResponsePokemons<Pokemon> => ({
         count: response.count,
         page: response.page,
         pageSize: response.pageSize,
@@ -49,7 +68,7 @@ export const apiList = createApi({
         }),
       }),
     }),
-    getRarities: builder.query<Response<Pokemon>, void>({
+    getRarities: builder.query<Response<Rarity>, void>({
       query: () => {
         return `/rarities`
       },

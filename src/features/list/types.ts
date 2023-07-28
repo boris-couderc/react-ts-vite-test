@@ -14,10 +14,4 @@ export type Pokemon = {
   price?: number
 }
 
-export type PokemonFromApi = Pokemon & {
-  cardmarket?: {
-    prices?: {
-      trendPrice?: number
-    }
-  }
-}
+export type Rarity = string

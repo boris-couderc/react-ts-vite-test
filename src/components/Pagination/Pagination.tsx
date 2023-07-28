@@ -1,22 +1,22 @@
 import classNames from 'classnames'
 
-import styles from './Pagination.module.pcss'
-
 import { Button } from '..'
 import { IconLeft, IconRight } from '~/icons'
+
+import styles from './Pagination.module.pcss'
 
 type PaginationProps = {
   current: number
   total: number
   classProps?: string
-  changePage: (value: string) => void
+  onChange: (value: string) => void
 }
 
-const Pagination = ({ current, total, classProps, changePage }: PaginationProps) => {
+const Pagination = ({ current, total, classProps, onChange }: PaginationProps) => {
   const handleChangePage = (value: string) => {
     if (current === 1 && value === 'prev') return
     if (current === total && value === 'next') return
-    changePage(value)
+    onChange(value)
   }
 
   return (

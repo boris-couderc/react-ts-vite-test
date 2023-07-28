@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
@@ -18,14 +18,8 @@ const Search = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const [searchParams] = useSearchParams()
   const location = useLocation()
   const inputValue = useSelector(selectSearchInputValue)
-
-  useEffect(() => {
-    dispatch(setSearchInputValue(searchParams.get('query') || ''))
-    dispatch(setSearchCurrentValue(searchParams.get('query') || ''))
-  }, [])
 
   useEffect(() => {
     if (location.pathname !== '/search') {

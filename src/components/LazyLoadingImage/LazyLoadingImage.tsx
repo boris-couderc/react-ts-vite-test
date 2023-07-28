@@ -1,6 +1,7 @@
 import { useState } from 'react'
-
 import classNames from 'classnames'
+
+import { Loader } from '..'
 
 import styles from './LazyLoadingImage.module.pcss'
 
@@ -15,6 +16,7 @@ const LazyLoadingImage = ({ srcUrl, srcSet, alt }: LazyLoadingImageProps) => {
 
   return (
     <div className={classNames(styles['lazy-loading-image'], { '-loaded': loaded })}>
+      {!loaded && <Loader size='s' />}
       <img src={srcUrl} srcSet={srcSet} alt={alt} loading='lazy' onLoad={() => setLoaded(true)} />
     </div>
   )
