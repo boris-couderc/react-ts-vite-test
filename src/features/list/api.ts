@@ -2,7 +2,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const { VITE_API_URL } = import.meta.env
 
-import { Pokemon, Rarity } from './types'
+import { Pokemon, Rarity } from '../types'
+
+import { replaceSpace } from '~/utils/functions'
 
 type Response<T> = {
   data: T[]
@@ -25,19 +27,17 @@ export type PokemonFromApi = Pokemon & {
 
 const pageSize = 20
 
-const replaceSpace = (s: string) => s.replace(/\s/g, '*')
-
-export const apiList = createApi({
+export const listApi = createApi({
   reducerPath: 'listApi',
   baseQuery: fetchBaseQuery({ baseUrl: VITE_API_URL as string }),
   endpoints: builder => ({
-    getPokemons: builder.query<ResponsePokemons<Pokemon>, { query: string; page: number; filter: string }>({
-      query: ({ query, page, filter }) => {
-        if (query !== '') {
+    getPokemons: builder.query<ResponsePokemons<Pokemon>, { search: string; page: number; filter: string }>({
+      query: ({ search, page, filter }) => {
+        if (search !== '') {
           if (filter) {
-            return `/cards?q=name:*${replaceSpace(query)}* rarity:"${filter}"&page=${page || 1}&pageSize=${pageSize}`
+            return `/cards?q=name:*${replaceSpace(search)}* rarity:"${filter}"&page=${page || 1}&pageSize=${pageSize}`
           } else {
-            return `/cards?q=name:*${replaceSpace(query)}*&page=${page || 1}&pageSize=${pageSize}`
+            return `/cards?q=name:*${replaceSpace(search)}*&page=${page || 1}&pageSize=${pageSize}`
           }
         } else {
           if (filter) {
@@ -76,4 +76,4 @@ export const apiList = createApi({
   }),
 })
 
-export const { useGetPokemonsQuery, useGetRaritiesQuery } = apiList
+export const { useGetPokemonsQuery, useGetRaritiesQuery } = listApi

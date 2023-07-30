@@ -7,10 +7,22 @@ type InputProps = {
   type?: string
   classProps?: string
   placeholder?: string
+  style?: 'light' | 'dark'
   onChange: (value: string) => void
+  onFocus?: () => void
+  onBlur?: () => void
 }
 
-const Input = ({ value = '', type = 'type', classProps, placeholder, onChange }: InputProps) => {
+const Input = ({
+  value = '',
+  type = 'type',
+  classProps,
+  placeholder,
+  style = 'light',
+  onChange,
+  onFocus,
+  onBlur,
+}: InputProps) => {
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value)
   }
@@ -18,10 +30,12 @@ const Input = ({ value = '', type = 'type', classProps, placeholder, onChange }:
   return (
     <input
       type={type}
-      className={classNames(styles.input, classProps)}
+      className={classNames(styles.input, style && `-${style}`, classProps)}
       placeholder={placeholder}
       value={value}
       onChange={handleOnChange}
+      onFocus={onFocus}
+      onBlur={onBlur}
     />
   )
 }

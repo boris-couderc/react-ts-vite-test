@@ -1,13 +1,5 @@
-import { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-
-import {
-  setSearchInputValue,
-  setSearchCurrentValue,
-  selectSearchInputValue,
-  cleanSearch,
-} from '~/features/search/slice'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Button, Input } from '~/components'
 import { IconSearch } from '~/icons'
@@ -16,14 +8,14 @@ import styles from './Search.module.pcss'
 
 const Search = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
+  const [searchParams] = useSearchParams()
+  const [inputValue, setInputValue] = useState(searchParams.get('search') || '')
   const location = useLocation()
-  const inputValue = useSelector(selectSearchInputValue)
 
   useEffect(() => {
     if (location.pathname !== '/search') {
-      dispatch(cleanSearch())
+      setInputValue('')
     }
   }, [location.pathname])
 
@@ -31,21 +23,20 @@ const Search = () => {
     event.preventDefault()
     if (inputValue !== '') {
       if (inputValue.length == 1) return
-      navigate(`/search?query=${inputValue}`)
-      dispatch(setSearchCurrentValue(inputValue))
+      navigate(`/search?search=${inputValue}`)
     } else {
       navigate(`/`)
-      dispatch(cleanSearch())
+      setInputValue('')
     }
   }
 
   const handleOnChange = (value: string) => {
-    dispatch(setSearchInputValue(value))
+    setInputValue(value)
   }
 
   return (
     <div className={styles.search}>
-      <form onSubmit={handleOnSubmit} className='searchbar__container'>
+      <form onSubmit={handleOnSubmit}>
         <Input value={inputValue} type='search' placeholder='Search a Pokemon by name ...' onChange={handleOnChange} />
         <Button type='submit' outline Icon={IconSearch}>
           Search

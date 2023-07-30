@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import { Cart } from '~/features'
+
 import { Wrapper } from '~/layouts'
 
 import logo from '~/assets/logo.png'
@@ -15,6 +17,7 @@ const Header = () => {
             <img src={logo} alt='' />
           </Link>
         </div>
+        <Cart />
       </Wrapper>
     </header>
   )

@@ -20,6 +20,7 @@ const ResultInfo = ({ query, count, filter }: ResultInfoProps) => {
           <Heading as='span' like='h5' classProps='-txt-center'>
             {query}
           </Heading>{' '}
+          name{' '}
         </>
       )}
       {filter && (

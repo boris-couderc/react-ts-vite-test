@@ -1,7 +1,7 @@
-import { Box, Button, Heading, LazyLoadingImage } from '~/components'
-import { IconAdd } from '~/icons'
+import { Box, Heading, LazyLoadingImage } from '~/components'
+import Quantifier from './Quantifier'
 
-import { Pokemon } from '../../types'
+import { Pokemon } from '../../../types'
 
 import styles from './Card.module.pcss'
 
@@ -65,9 +65,7 @@ const Card = ({ item }: { item: Pokemon }) => {
           )}
         </div>
       </div>
-      <Button href='/page' Icon={IconAdd} size='s' classProps='-margin-top-m'>
-        Add to cart
-      </Button>
+      <Quantifier item={item} />
     </Box>
   )
 }

@@ -13,7 +13,7 @@ type FilterProps = {
   onChange: (value: string) => void
 }
 
-const Filter = ({ value, classProps, onChange }: FilterProps) => {
+const Filter = ({ value = '', classProps, onChange }: FilterProps) => {
   const { data } = useGetRaritiesQuery()
 
   const handleClear = () => onChange('')
