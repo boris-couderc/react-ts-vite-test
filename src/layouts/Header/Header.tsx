@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 
-import { Cart } from '~/features'
-
 import { Wrapper } from '~/layouts'
+import { ButtonCart } from '~/features'
 
 import logo from '~/assets/logo.png'
 
@@ -16,8 +15,8 @@ const Header = () => {
           <Link to='/' className={styles.logo}>
             <img src={logo} alt='' />
           </Link>
+          <ButtonCart classProps={styles['-header-button-cart']} />
         </div>
-        <Cart />
       </Wrapper>
     </header>
   )

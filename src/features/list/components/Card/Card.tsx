@@ -7,7 +7,7 @@ import styles from './Card.module.pcss'
 
 const Card = ({ item }: { item: Pokemon }) => {
   return (
-    <Box classProps={styles['card-box']}>
+    <Box classProps={styles['-card-box']}>
       <LazyLoadingImage
         srcUrl={item.images.small}
         srcSet={`${item.images.small} 1x, ${item.images.large} 2x`}
@@ -58,11 +58,11 @@ const Card = ({ item }: { item: Pokemon }) => {
           </div>
         )}
         <div className='-margin-top-s'>
-          {item.price && (
+          {item.price ? (
             <Heading as='span' like='h4'>
               Price : {item.price}€
             </Heading>
-          )}
+          ) : null}
         </div>
       </div>
       <Quantifier item={item} />

@@ -1,28 +1,30 @@
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { selectCartCount, selectCartItems } from '~/features/cart/slice'
+import { selectCart } from '~/features/cart/slice'
 
 import styles from './Cart.module.pcss'
+import classNames from 'classnames'
 
 const Cart = () => {
-  const count = useSelector(selectCartCount)
-  const items = useSelector(selectCartItems)
+  const cart = useSelector(selectCart)
 
-  useEffect(() => {
-    console.log(items)
-  }, [items])
+  // useEffect(() => {
+  //   console.log(items)
+  // }, [items])
 
   return (
-    <div className={styles.cart}>
-      cart : {count}
+    <div className={classNames(styles.cart, cart.isOpen && '-is-open')}>
+      cart : {cart.count}
+      <br />
+      total : {cart.total}
       <br />
       lines :
-      {items.map(item => {
+      {cart.items.map(item => {
         return (
-          <span key={item.id} style={{ border: '1px solid grey' }}>
+          <div key={item.id} style={{ border: '1px solid grey' }}>
             {item.quantity} : {item.name}
-          </span>
+          </div>
         )
       })}
     </div>

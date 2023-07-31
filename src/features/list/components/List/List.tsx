@@ -54,14 +54,14 @@ const List = () => {
       </div>
       <div className={styles.actions}>
         {((data && data.totalCount > 0) || queryParams.filter !== '') && (
-          <Filter value={queryParams.filter} onChange={handleChangeFilter} classProps={styles['list-filter']} />
+          <Filter value={queryParams.filter} onChange={handleChangeFilter} classProps={styles['-list-filter']} />
         )}
         {data && data.totalCount > data.pageSize && (
           <Pagination
             current={queryParams.page}
             total={Math.ceil(data.totalCount / data.pageSize)}
             onChange={handleChangePage}
-            classProps={styles['list-pagination']}
+            classProps={styles['-list-pagination']}
           />
         )}
       </div>

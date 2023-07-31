@@ -10,8 +10,10 @@ type Item = {
 }
 
 interface CartState {
-  count: number
   items: Item[]
+  count: number
+  total: number
+  isOpen: boolean
 }
 
 type addItemPayload = {
@@ -30,8 +32,10 @@ type updateQuantityPayload = {
 }
 
 const initialState: CartState = {
-  count: 0,
   items: [],
+  count: 0,
+  total: 0,
+  isOpen: false,
 }
 
 export const cartSlice = createSlice({
@@ -47,6 +51,7 @@ export const cartSlice = createSlice({
         state.items.push({ id, name, price, quantity: 1 })
       }
       state.count++
+      state.total += price
     },
     removeItem(state, action: PayloadAction<removeItemPayload>) {
       const { id } = action.payload
@@ -58,6 +63,7 @@ export const cartSlice = createSlice({
         item.quantity--
       }
       state.count--
+      state.total -= item.price
     },
     updateQuantity(state, action: PayloadAction<updateQuantityPayload>) {
       const { id, quantity } = action.payload
@@ -68,12 +74,25 @@ export const cartSlice = createSlice({
       } else {
         item.quantity = quantity
       }
-      state.count = state.items.reduce((acc, item) => acc + item.quantity, 0)
+      const { count, total } = state.items.reduce(
+        (acc, item) => ({
+          count: acc.count + item.quantity,
+          total: acc.total + item.price * item.quantity,
+        }),
+        { count: 0, total: 0 },
+      )
+      state.count = count
+      state.total = total
+    },
+    setOpen(state, action: PayloadAction<boolean>) {
+      state.isOpen = action.payload
     },
   },
 })
 
-export const { addItem, removeItem, updateQuantity } = cartSlice.actions
+export const { addItem, removeItem, updateQuantity, setOpen } = cartSlice.actions
 
+export const selectCart = (state: RootState) => state.cart
 export const selectCartCount = (state: RootState) => state.cart.count
+export const selectCartTotal = (state: RootState) => state.cart.total
 export const selectCartItems = (state: RootState) => state.cart.items
