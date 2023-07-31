@@ -34,11 +34,21 @@ const Page = () => {
         <p>
           <Link to='/'>Home</Link>
         </p>
-        <Button onClick={() => console.log('click')}>test</Button>
-        <Button onClick={() => console.log('click')} size='l'>
+        <Button onClick={() => console.log('click')} Icon={IconAdd}></Button>
+        <Button onClick={() => console.log('click')} Icon={IconAdd} size='l'></Button>
+        <Button href='/' Icon={IconAdd} size='s'></Button>
+        <Button href='/' Icon={IconAdd} size='xs'></Button>
+        <br />
+        <Button onClick={() => console.log('click')} Icon={IconAdd}>
           test
         </Button>
-        <Button href='/' size='s'>
+        <Button onClick={() => console.log('click')} Icon={IconAdd} size='l'>
+          test
+        </Button>
+        <Button href='/' Icon={IconAdd} size='s'>
+          test
+        </Button>
+        <Button href='/' Icon={IconAdd} size='xs'>
           test
         </Button>
         <br />
@@ -51,12 +61,21 @@ const Page = () => {
         <Button href='/' size='s' disabled>
           test
         </Button>
+        <Button href='/' size='xs' disabled>
+          test
+        </Button>
         <br />
         <IconAdd />
         <IconRemove color={'neutral'} />
         <IconRocket color={'primary'} />
         <br />
-        <Input type='text' placeholder='Search a Pokemon ...' />
+        <Input
+          onChange={() => {
+            console.log('change')
+          }}
+          type='text'
+          placeholder='Search a Pokemon ...'
+        />
       </div>
     </>
   )

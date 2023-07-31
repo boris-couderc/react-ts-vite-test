@@ -1,7 +1,8 @@
 .button-cart {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  margin-right: var(--spacing-s);
+  gap: 1rem;
   line-height: 1.5;
 
   @media (--from-small) {
@@ -24,8 +25,8 @@
   aspect-ratio: 1/1;
   bottom: -0.7rem;
   right: -0.9rem;
-  font-size: 1rem;
-  padding: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.4rem;
   font-weight: bold;
   line-height: 1;
   color: var(--color-primary);
@@ -73,7 +74,7 @@
 .text {
   display: none;
 
-  @media (--from-medium) {
+  @media (--from-small) {
     display: block;
   }
 
@@ -84,4 +85,6 @@
 
 .total {
   text-align: right;
+  font-weight: bold;
+  color: var(--color-txt-dark);
 }

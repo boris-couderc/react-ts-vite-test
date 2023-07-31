@@ -76,7 +76,7 @@
 
   /* &:global(:not(.-disabled):focus::before), */
   &:global(:not(.-disabled):hover::before) {
-    transform: scale(1.0375, 1.05);
+    transform: scale(1.0475, 1.05);
     opacity: 0.25;
   }
 
@@ -99,11 +99,11 @@
   }
 
   &:global(.-neutral) {
-    color: var(--color-neutral-500);
+    color: var(--color-neutral);
   }
 
   &:global(.-disabled) {
-    color: var(--color-neutral-200);
+    color: var(--color-neutral-150);
   }
 
   &:global(.-disabled::after) {
@@ -125,10 +125,29 @@
     margin-left: 0.6875rem;
   }
 
+  &:global(.-xs) {
+    height: 1.875rem;
+    min-width: 1.875rem;
+    font-size: 0.95rem;
+
+    .label {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+
+    .label:not(:first-child) {
+      padding-left: 0;
+    }
+
+    & > :nth-last-child(2) {
+      margin-left: 0.375rem;
+    }
+  }
+
   &:global(.-s) {
     height: 2.5rem;
     min-width: 2.5rem;
-    font-size: 1rem;
+    font-size: 1.125rem;
 
     .label {
       padding-left: 1.125rem;

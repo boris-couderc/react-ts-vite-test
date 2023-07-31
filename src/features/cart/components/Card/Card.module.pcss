@@ -1,0 +1,30 @@
+.-card-box {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  gap: var(--spacing-s);
+
+  @media (--from-small) {
+    grid-template-columns: 1fr 3.75fr;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-xxs);
+  line-height: 1.125;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-s);
+}
+
+.price {
+  font-weight: bold;
+  margin: var(--spacing-xxs) 0;
+  color: var(--color-txt-dark);
+}

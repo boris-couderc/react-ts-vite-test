@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 
+import { Heading } from '~/components'
 import { IconShoppingBag } from '~/icons'
 
 import { selectCart, setOpen } from '~/features/cart/slice'
 
 import styles from './ButtonCart.module.pcss'
-import { Heading } from '~/components'
 
 type ButtonCartProps = {
   classProps?: string
@@ -30,7 +30,6 @@ const ButtonCart = ({ classProps }: ButtonCartProps) => {
   }, [cart.count])
 
   const handleOpenCart = () => {
-    console.log('Open cart')
     dispatch(setOpen(true))
   }
 
@@ -44,7 +43,7 @@ const ButtonCart = ({ classProps }: ButtonCartProps) => {
         <Heading as='div' like='h4' classProps='-margin-none'>
           Shopping cart
         </Heading>
-        {cart.total > 0 && <div className={styles.total}>{cart.total.toFixed(2)}€</div>}
+        {cart.total > 0 && <div className={styles.total}>{cart.total.toFixed(2)} €</div>}
       </div>
     </button>
   )

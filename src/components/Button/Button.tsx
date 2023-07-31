@@ -10,7 +10,7 @@ type GenericProps = {
   children?: string
   Icon?: React.ComponentType<IconProps>
   color?: Color
-  size?: 's' | 'm' | 'l'
+  size?: 'xs' | 's' | 'm' | 'l'
   outline?: boolean
   disabled?: boolean
   classProps?: string

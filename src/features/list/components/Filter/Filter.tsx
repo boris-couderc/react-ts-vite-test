@@ -23,7 +23,7 @@ const Filter = ({ value = '', classProps, onChange }: FilterProps) => {
       {data && data.data?.length > 0 && (
         <>
           <Select value={value} options={data.data} onChange={onChange} />
-          {value && <Button Icon={IconCross} color={'primary'} size='s' onClick={handleClear} />}
+          {value && <Button Icon={IconCross} color={'neutral'} size='s' onClick={handleClear} />}
         </>
       )}
     </div>

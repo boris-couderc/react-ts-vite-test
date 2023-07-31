@@ -5,23 +5,31 @@ import classNames from 'classnames'
 import { Button, Input } from '~/components'
 import { IconAdd, IconRemove } from '~/icons'
 
-import { addItem, removeItem, updateQuantity, selectCartItems } from '~/features/cart/slice'
-
-import { Pokemon } from '../../../types'
+import { addItem, removeItem, updateQuantity, selectCartItems } from '../../slice'
 
 import styles from './Quantifier.module.pcss'
 
-const Quantifier = ({ item }: { item: Pokemon }) => {
+type QuantifierProps = {
+  id: number
+  name: string
+  image: string
+  price?: number
+  size?: 'xs' | 's'
+  align?: 'left' | 'center' | 'right'
+  classProps?: string
+}
+
+const Quantifier = ({ id, name, image, price, size = 's', align = 'center', classProps }: QuantifierProps) => {
   const dispatch = useDispatch()
 
-  const quantityInCart = useSelector(selectCartItems).find(itemInCart => itemInCart.id === item.id)?.quantity ?? 0
+  const quantityInCart = useSelector(selectCartItems).find(itemInCart => itemInCart.id === id)?.quantity ?? 0
   const [quantityLocal, setQuantityLocal] = useState(quantityInCart)
   const [isFocus, setIsFocus] = useState(false)
 
   const handleAddItemToCart = () => {
     setIsFocus(false)
-    if (!item.price) return
-    dispatch(addItem({ id: item.id, name: item.name, price: item.price }))
+    if (!price) return
+    dispatch(addItem({ id, name, price, image }))
   }
 
   const handleUpdateItemQuantityLocal = (value: string) => {
@@ -30,12 +38,12 @@ const Quantifier = ({ item }: { item: Pokemon }) => {
 
   const handleUpdateItemQuantityToCart = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    dispatch(updateQuantity({ id: item.id, quantity: quantityLocal }))
+    dispatch(updateQuantity({ id, quantity: quantityLocal }))
   }
 
   const handleRemoveItemToCart = () => {
     setIsFocus(false)
-    dispatch(removeItem({ id: item.id }))
+    dispatch(removeItem({ id }))
   }
 
   const handleFocus = () => {
@@ -49,11 +57,11 @@ const Quantifier = ({ item }: { item: Pokemon }) => {
 
   return (
     <>
-      {item.price ? (
-        <div className={classNames(styles.quantifier, '-margin-top-m')}>
+      {price ? (
+        <div className={classNames(styles.quantifier, size && `-${size}`, align && `-align-${align}`, classProps)}>
           {quantityInCart ? (
             <>
-              <Button onClick={handleRemoveItemToCart} Icon={IconRemove} size='s' />
+              <Button onClick={handleRemoveItemToCart} Icon={IconRemove} size={size} />
               <form onSubmit={handleUpdateItemQuantityToCart}>
                 <Input
                   value={isFocus ? `${quantityLocal}` : `${quantityInCart}`}
@@ -62,12 +70,13 @@ const Quantifier = ({ item }: { item: Pokemon }) => {
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   classProps='-card-input'
+                  size={size}
                 />
               </form>
-              <Button onClick={handleAddItemToCart} Icon={IconAdd} size='s' />
+              <Button onClick={handleAddItemToCart} Icon={IconAdd} size={size} />
             </>
           ) : (
-            <Button onClick={handleAddItemToCart} Icon={IconAdd} size='s'>
+            <Button onClick={handleAddItemToCart} Icon={IconAdd} size={size}>
               Add to cart
             </Button>
           )}

@@ -7,7 +7,6 @@ type ResultInfoProps = {
 }
 
 const ResultInfo = ({ query, count, filter }: ResultInfoProps) => {
-  // if (query !== '')
   return (
     <div className='-txt-center'>
       <Heading as='span' like='h5' classProps='-txt-center'>
@@ -17,7 +16,7 @@ const ResultInfo = ({ query, count, filter }: ResultInfoProps) => {
       {query && (
         <>
           for{' '}
-          <Heading as='span' like='h5' classProps='-txt-center'>
+          <Heading as='span' like='h6' classProps='-txt-center'>
             {query}
           </Heading>{' '}
           name{' '}
@@ -25,11 +24,11 @@ const ResultInfo = ({ query, count, filter }: ResultInfoProps) => {
       )}
       {filter && (
         <>
-          {query ? 'and ' : 'with '}
-          rarity{' '}
-          <Heading as='span' like='h5' classProps='-txt-center'>
+          {query ? 'and ' : 'with '}{' '}
+          <Heading as='span' like='h6' classProps='-txt-center'>
             {filter}
-          </Heading>
+          </Heading>{' '}
+          rarity
         </>
       )}
     </div>

@@ -29,12 +29,12 @@
     width: var(--icon-xl);
     height: var(--icon-xl);
   }
-}
 
-.primary {
-  color: var(--color-primary);
-}
+  &:global(.-primary) {
+    color: var(--color-primary);
+  }
 
-.neutral {
-  color: var(--color-neutral);
+  &:global(.-neutral) {
+    color: var(--color-neutral);
+  }
 }

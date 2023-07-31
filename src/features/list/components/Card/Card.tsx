@@ -1,7 +1,7 @@
 import { Box, Heading, LazyLoadingImage } from '~/components'
-import Quantifier from './Quantifier'
 
-import { Pokemon } from '../../../types'
+import { Quantifier } from '~/features'
+import { Pokemon } from '~/features/types'
 
 import styles from './Card.module.pcss'
 
@@ -19,7 +19,7 @@ const Card = ({ item }: { item: Pokemon }) => {
       <div className={styles.details}>
         {item.hp && (
           <div>
-            <Heading as='span' like='h5'>
+            <Heading as='span' like='h6'>
               HP :
             </Heading>{' '}
             {item.hp}
@@ -27,7 +27,7 @@ const Card = ({ item }: { item: Pokemon }) => {
         )}
         {item.rarity && (
           <div>
-            <Heading as='span' like='h5'>
+            <Heading as='span' like='h6'>
               Rarity :
             </Heading>{' '}
             {item.rarity}
@@ -35,7 +35,7 @@ const Card = ({ item }: { item: Pokemon }) => {
         )}
         {item.types && item.types?.length > 0 && (
           <div>
-            <Heading as='span' like='h5'>
+            <Heading as='span' like='h6'>
               Types :
             </Heading>{' '}
             {item.types.join(', ')}
@@ -43,7 +43,7 @@ const Card = ({ item }: { item: Pokemon }) => {
         )}
         {item.subtypes && item.subtypes?.length > 0 && (
           <div>
-            <Heading as='span' like='h5'>
+            <Heading as='span' like='h6'>
               Subtypes :
             </Heading>{' '}
             {item.subtypes.join(', ')}
@@ -51,7 +51,7 @@ const Card = ({ item }: { item: Pokemon }) => {
         )}
         {item.rules && item.rules?.length > 0 && (
           <div>
-            <Heading as='span' like='h5'>
+            <Heading as='span' like='h6'>
               Rules :
             </Heading>{' '}
             {item.rules.join(' ')}
@@ -59,13 +59,22 @@ const Card = ({ item }: { item: Pokemon }) => {
         )}
         <div className='-margin-top-s'>
           {item.price ? (
-            <Heading as='span' like='h4'>
-              Price : {item.price}€
-            </Heading>
+            <>
+              <Heading as='span' like='h4'>
+                Price :
+              </Heading>
+              <span className={styles.price}> {item.price.toFixed(2)} €</span>
+            </>
           ) : null}
         </div>
       </div>
-      <Quantifier item={item} />
+      <Quantifier
+        id={item.id}
+        name={item.name}
+        price={item.price}
+        image={item.images.small}
+        classProps={styles['-list-quantifier']}
+      />
     </Box>
   )
 }

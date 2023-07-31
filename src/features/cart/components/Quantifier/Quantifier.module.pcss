@@ -1,0 +1,24 @@
+.quantifier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: var(--spacing-xxs);
+
+  :global(.-card-input) {
+    width: 5rem;
+    text-align: center;
+  }
+
+  :global(.-card-input.-xs) {
+    width: 4rem;
+  }
+
+  &:global(.-align-left) {
+    justify-content: flex-start;
+  }
+
+  &:global(.-align-right) {
+    justify-content: flex-end;
+  }
+}

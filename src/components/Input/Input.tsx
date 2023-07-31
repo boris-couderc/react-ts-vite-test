@@ -8,6 +8,7 @@ type InputProps = {
   classProps?: string
   placeholder?: string
   style?: 'light' | 'dark'
+  size?: 'xs' | 's' | 'm'
   onChange: (value: string) => void
   onFocus?: () => void
   onBlur?: () => void
@@ -19,6 +20,7 @@ const Input = ({
   classProps,
   placeholder,
   style = 'light',
+  size = 'm',
   onChange,
   onFocus,
   onBlur,
@@ -30,7 +32,7 @@ const Input = ({
   return (
     <input
       type={type}
-      className={classNames(styles.input, style && `-${style}`, classProps)}
+      className={classNames(styles.input, style && `-${style}`, size && `-${size}`, classProps)}
       placeholder={placeholder}
       value={value}
       onChange={handleOnChange}

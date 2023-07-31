@@ -25,8 +25,8 @@ const Select = ({ value = '', options, classProps, onChange }: SelectProps) => {
           className={classNames(styles.select, classProps)}
         >
           <option value=''>Choose a rarity</option>
-          {options.map((item, index) => (
-            <option key={index} value={item}>
+          {options.map(item => (
+            <option key={item} value={item}>
               {item}
             </option>
           ))}

@@ -3,10 +3,9 @@ import { useSearchParams } from 'react-router-dom'
 import { Card, ResultInfo, Filter } from '..'
 import { Grid, Pagination, Loader } from '~/components'
 import { IconEmojiSad } from '~/icons'
+import { scrollTop } from '~/utils/functions'
 
 import { useGetPokemonsQuery } from '../../api'
-
-import { scrollTop } from '~/utils/functions'
 
 import styles from './List.module.pcss'
 
@@ -22,18 +21,21 @@ const List = () => {
 
   const { data, isLoading, isFetching } = useGetPokemonsQuery(queryParams)
 
-  const updateUrl = (name: string, value: string) => {
+  const handleChangePage = (value: string) => {
     scrollTop()
-    urlParams.set(name, value)
+    urlParams.set('page', `${queryParams.page + (value === 'prev' ? -1 : +1)}`)
     setSearchParams(urlParams)
   }
 
-  const handleChangePage = (value: string) => {
-    updateUrl('page', `${queryParams.page + (value === 'prev' ? -1 : +1)}`)
-  }
-
   const handleChangeFilter = (value: string) => {
-    updateUrl('filter', value)
+    scrollTop()
+    if (value) {
+      urlParams.set('filter', value)
+    } else {
+      urlParams.delete('filter')
+    }
+    urlParams.delete('page')
+    setSearchParams(urlParams)
   }
 
   if (isLoading)

@@ -7,4 +7,20 @@
   li& {
     list-style: none;
   }
+
+  &:global(.-padding) {
+    @each $size in xs, s, l {
+      &-$(size) {
+        padding: var(--spacing-$(size));
+      }
+    }
+  }
+
+  &:global(.-border-radius) {
+    @each $size in xs, s, l {
+      &-$(size) {
+        border-radius: var(--border-radius-$(size));
+      }
+    }
+  }
 }

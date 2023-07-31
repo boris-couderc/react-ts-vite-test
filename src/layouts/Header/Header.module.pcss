@@ -6,8 +6,12 @@
 
 .content {
   display: grid;
-  grid-template-columns: 1fr 6rem 1fr;
+  grid-template-columns: 1fr 5rem 1fr;
   width: 100%;
+
+  @media (--from-small) {
+    grid-template-columns: 1fr 6rem 1fr;
+  }
 }
 
 .logo {
@@ -18,9 +22,14 @@
 
   img {
     display: block;
-    width: 6rem;
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
     object-fit: contain;
+
+    @media (--from-small) {
+      width: 6rem;
+      height: 6rem;
+    }
   }
 }
 

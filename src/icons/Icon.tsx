@@ -6,10 +6,7 @@ import { IconWrapperProps } from './types'
 
 const Icon = ({ symbol, color, size, classProps }: IconWrapperProps) => {
   return (
-    <svg
-      viewBox='0 0 24 24'
-      className={classNames(styles.icon, color && styles[color], size && `-${size}`, classProps)}
-    >
+    <svg viewBox='0 0 24 24' className={classNames(styles.icon, color && `-${color}`, size && `-${size}`, classProps)}>
       {symbol && <use href={`${icons}#${symbol}`} />}
     </svg>
   )

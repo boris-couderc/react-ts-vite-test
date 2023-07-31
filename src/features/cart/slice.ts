@@ -7,6 +7,7 @@ type Item = {
   name: string
   price: number
   quantity: number
+  image: string
 }
 
 interface CartState {
@@ -20,6 +21,7 @@ type addItemPayload = {
   id: number
   name: string
   price: number
+  image: string
 }
 
 type removeItemPayload = {
@@ -43,15 +45,15 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<addItemPayload>) {
-      const { id, name, price } = action.payload
+      const { id, name, price, image } = action.payload
       const item = state.items.find(item => item.id === id)
       if (item) {
         item.quantity++
       } else {
-        state.items.push({ id, name, price, quantity: 1 })
+        state.items.push({ id, name, price, quantity: 1, image })
       }
       state.count++
-      state.total += price
+      state.total = Number((state.total + price).toFixed(2))
     },
     removeItem(state, action: PayloadAction<removeItemPayload>) {
       const { id } = action.payload
@@ -63,7 +65,7 @@ export const cartSlice = createSlice({
         item.quantity--
       }
       state.count--
-      state.total -= item.price
+      state.total = Number((state.total - item.price).toFixed(2))
     },
     updateQuantity(state, action: PayloadAction<updateQuantityPayload>) {
       const { id, quantity } = action.payload
@@ -82,7 +84,7 @@ export const cartSlice = createSlice({
         { count: 0, total: 0 },
       )
       state.count = count
-      state.total = total
+      state.total = Number(total.toFixed(2))
     },
     setOpen(state, action: PayloadAction<boolean>) {
       state.isOpen = action.payload
