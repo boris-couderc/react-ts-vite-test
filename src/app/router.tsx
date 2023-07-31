@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import App from './App'
 
-import { Error, Home, Search, NotFound, Page } from '~/pages'
+import { Error, Home, Search, NotFound, Example } from '~/pages'
 
 export const router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ export const router = createBrowserRouter([
         element: <Search />,
       },
       {
-        path: '/page',
-        element: <Page />,
+        path: '/example',
+        element: <Example />,
       },
       {
         path: '*',

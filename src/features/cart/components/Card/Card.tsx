@@ -19,7 +19,6 @@ const Card = ({ id, name, price, image }: CardProps) => {
   const dispatch = useDispatch()
 
   const handleRemoveItem = () => {
-    console.log('remove item')
     dispatch(updateQuantity({ id, quantity: 0 }))
   }
 

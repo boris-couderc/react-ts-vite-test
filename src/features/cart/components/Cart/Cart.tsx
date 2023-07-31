@@ -64,7 +64,7 @@ const Cart = () => {
                 </Heading>
               </div>
               <Button
-                onClick={() => console.log('checkout')}
+                onClick={() => console.log('Continue to checkout')}
                 size='l'
                 Icon={IconRocket}
                 classProps='-margin-top-m -cart-total-button'

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import { Button, Input } from '~/components'
 import { IconAdd, IconRemove, IconRocket } from '~/icons'
 
-import styles from './Page.module.pcss'
+import styles from './Example.module.pcss'
 
-const Page = () => {
+const Example = () => {
   return (
     <>
-      <div className={styles.page}>
+      <div className={styles.example}>
         <h1>Lorem ipsum</h1>
         <h2>Lorem ipsum dolor sit amet</h2>
         <p>
@@ -81,4 +81,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default Example

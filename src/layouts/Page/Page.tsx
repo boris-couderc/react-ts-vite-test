@@ -19,8 +19,8 @@ const Page = ({ children }: PageProps) => {
           <Wrapper>{children}</Wrapper>
         </main>
         <Footer />
+        <Cart />
       </div>
-      <Cart />
     </>
   )
 }
