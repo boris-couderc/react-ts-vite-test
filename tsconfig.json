@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "types": ["vitest/globals"],
 
     /* Linting */
     "strict": true,
@@ -33,7 +34,7 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["src", "src/index.d.ts"],
+  "include": ["src", "vitest.setup.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
