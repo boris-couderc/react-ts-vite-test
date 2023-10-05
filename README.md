@@ -4,7 +4,7 @@ Build with this [custom React starter](https://github.com/boris-couderc/react-ts
 
 Shopping list with filter, search bar, increment and decrement add to cart, pagination and mini shopping cart component.
 
-## Quick test of the new React environment :
+## Quick test of new React environment :
 
 - [TypeScript](https://react-typescript-cheatsheet.netlify.app/)
 - [Vite](https://vitejs.dev/) as fast build tool
